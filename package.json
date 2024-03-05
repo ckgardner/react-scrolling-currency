@@ -1,6 +1,6 @@
 {
   "name": "react-scrolling-currency",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple react component that uses scroll animation on currencies and numbers",
   "main": "dist/index.js",
   "files": [
@@ -15,7 +15,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "tsc",
+    "build": "tsc && copyfiles -u 1 src/styles/*.css dist/styles",
     "test": "jest",
     "preversion": "npm run build",
     "version": "npm publish"
@@ -40,7 +40,9 @@
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.62",
+    "copyfiles": "^2.4.1",
     "jest": "^29.7.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
   },
