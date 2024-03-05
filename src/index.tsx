@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { motion } from "framer-motion";
 
-import "./styles/styles.css";
+import "./styles.css";
 import { formatCurrencyForDisplay, formatNumberForDisplay } from "./utils/formatForDisplay";
 import { getCurrencySymbol } from "./utils/getCurrencySymbol";
 
