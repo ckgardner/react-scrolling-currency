@@ -1,0 +1,26 @@
+.tickerView {
+  height: 100%;
+  margin: auto;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  overflow: hidden;
+  position: relative;
+}
+
+.numberPlaceholder {
+  visibility: hidden;
+}
+
+.tickerColumnContainer {
+  position: relative;
+}
+
+.tickerColumn {
+  position: absolute;
+  bottom: 0;
+  height: 1000%;
+}
+
+.tickerDigit {
+  height: 10%;
+}

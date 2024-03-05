@@ -1,0 +1,54 @@
+{
+  "name": "react-scrolling-currency",
+  "version": "1.0.0",
+  "description": "Simple react component that uses scroll animation on currencies and numbers",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "test": "jest",
+    "preversion": "npm run build",
+    "version": "npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckgardner/react-scrolling-currency.git"
+  },
+  "keywords": [
+    "React",
+    "Scrolling",
+    "Numbers",
+    "Animated",
+    "Scroll"
+  ],
+  "author": "Cade Gardner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckgardner/react-scrolling-currency/issues"
+  },
+  "homepage": "https://github.com/ckgardner/react-scrolling-currency#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.2.62",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "framer-motion": "^11.0.8",
+    "rimraf": "^5.0.5"
+  }
+}
