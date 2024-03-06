@@ -15,9 +15,14 @@ export default [
     output: [
       {
         file: packageJson.main,
-        format: 'esm',
+        format: 'cjs',
         sourcemap: true,
       },
+      {
+        file: packageJson.module,
+        format: 'esm',
+        sourcemap: true,
+      }
     ],
     plugins: [
       typescript(),
