@@ -15,7 +15,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "tsc && copyfiles -u 1 src/*.css dist",
+    "build": "rollup -c",
     "test": "jest",
     "preversion": "npm run build",
     "version:patch": "npm version patch && npm publish",
