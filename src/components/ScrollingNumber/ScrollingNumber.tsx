@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { motion } from "framer-motion";
 
 import "./styles.css";
-import { clsx } from "clsx";
-import { getCurrencySymbol } from "../utils/getCurrencySymbol";
-import { formatCurrencyForDisplay, formatNumberForDisplay } from "../utils/formatForDisplay";
+import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
+import { formatCurrencyForDisplay, formatNumberForDisplay } from "../../utils/formatForDisplay";
 
 const SymbolColumn = () => (
   <div>
@@ -50,7 +49,7 @@ const renderColumn = (value: string, index: number) => {
   return <NumberColumn key={`column-${value}-${index}`} digit={value} />;
 };
 
-export const ScrollingNumber = ({
+const ScrollingNumber = ({
   number,
   isCurrency = true,
   locale = "en-US",
@@ -95,7 +94,7 @@ export const ScrollingNumber = ({
   const isNegative = number < 0;
 
   return (
-    <div className={clsx([className, "tickerView"])}>
+    <div className={`${className} ${"tickerView"}`}>
       {/* The numbers and symbol are styled using "flex: reverse" */}
       {numArray.map((num, index) => renderColumn(num, index))}
       {isCurrency && currencySymbol}
@@ -103,3 +102,5 @@ export const ScrollingNumber = ({
     </div>
   );
 };
+
+export default ScrollingNumber;
