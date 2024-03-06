@@ -23,7 +23,7 @@ export default {
         dir: 'dist',
         format: 'esm',
       },
-      plugins: [autoprefixer(), typescript()],
+      plugins: [autoprefixer(), typescript({tsconfig: "./tsconfig.json"})],
       minimize: true,
       modules: true,
       inject: true,
