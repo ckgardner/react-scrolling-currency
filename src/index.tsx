@@ -5,22 +5,11 @@ import { motion } from "framer-motion";
 import "./styles.css";
 import { formatCurrencyForDisplay, formatNumberForDisplay } from "./utils/formatForDisplay";
 import { getCurrencySymbol } from "./utils/getCurrencySymbol";
+import { clsx } from "clsx";
 
-const DecimalColumn = () => (
+const SymbolColumn = () => (
   <div>
     <span>.</span>
-  </div>
-);
-
-const CommaColumn = () => (
-  <div>
-    <span>,</span>
-  </div>
-);
-
-const SpaceColumn = () => (
-  <div>
-    <span>&nbsp;</span>
   </div>
 );
 
@@ -54,16 +43,11 @@ const NumberColumn = ({ digit }: { digit: string }) => {
 };
 
 const renderColumn = (value: string, index: number) => {
-  switch (value) {
-    case ".":
-      return <DecimalColumn key={`column-${value}-${index}`} />;
-    case ",":
-      return <CommaColumn key={`column-${value}-${index}`} />;
-    case " ":
-      return <SpaceColumn key={`column-${value}-${index}`} />;
-    default:
-      return <NumberColumn key={`column-${value}-${index}`} digit={value} />;
+  const symbols = [".", ",", " "];
+  if (symbols.includes(value)) {
+    return <SymbolColumn key={`column-${value}-${index}`} />;
   }
+  return <NumberColumn key={`column-${value}-${index}`} digit={value} />;
 };
 
 export const ScrollingNumber = ({
@@ -71,7 +55,9 @@ export const ScrollingNumber = ({
   isCurrency = true,
   locale = "en-US",
   currencyCode = "USD",
+  className,
 }: {
+  className?: string;
   /**
    * @example 1055.35 or 1055
    * @returns currency with animation
@@ -109,7 +95,7 @@ export const ScrollingNumber = ({
   const isNegative = number < 0;
 
   return (
-    <div className="tickerView">
+    <div className={clsx([className, "tickerView"])}>
       {/* The numbers and symbol are styled using "flex: reverse" */}
       {numArray.map((num, index) => renderColumn(num, index))}
       {isCurrency && currencySymbol}
