@@ -26,5 +26,5 @@ export default {
     }),
     typescript({tsconfig: "./tsconfig.json"})
   ],
-  external: ["react"],
+  external: ['react', 'react/jsx-runtime', 'framer-motion', 'clsx'],
 };

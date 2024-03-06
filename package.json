@@ -2,14 +2,16 @@
   "name": "react-scrolling-currency",
   "version": "1.0.6",
   "description": "Simple react component that uses scroll animation on currencies and numbers",
-  "main": "dist/index.js",
+  "main": "dist/bundle.cjs.js",
+  "module": "dist/bundle.esm.js",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "import": "./dist/bundle.esm.js",
+      "require": "./dist/bundle.cjs.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
@@ -42,7 +44,6 @@
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.62",
-    "clsx": "^2.1.0",
     "jest": "^29.7.0",
     "rollup": "^4.12.1",
     "rollup-plugin-postcss": "^4.0.2",
@@ -51,11 +52,12 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.8"
   },
   "dependencies": {
     "autoprefixer": "^10.4.18",
-    "framer-motion": "^11.0.8",
     "rimraf": "^5.0.5"
   }
 }
