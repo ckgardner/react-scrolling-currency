@@ -1,6 +1,6 @@
 {
   "name": "react-scrolling-currency",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Simple react component that uses scroll animation on currencies and numbers",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
