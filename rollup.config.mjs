@@ -1,5 +1,6 @@
 import postcss from "rollup-plugin-postcss";
 import autoprefixer from "autoprefixer"; // Optional, for adding vendor prefixes
+import typescript from 'rollup-plugin-typescript2';
 
 export default {
   input: "src/index.tsx",
@@ -17,7 +18,12 @@ export default {
   ],
   plugins: [
     postcss({
-      plugins: [autoprefixer()],
+      input: 'src/index.tsx',
+      output: {
+        dir: 'dist',
+        format: 'esm',
+      },
+      plugins: [autoprefixer(), typescript()],
       minimize: true,
       modules: true,
       inject: true,
