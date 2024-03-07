@@ -6,7 +6,7 @@ import "./styles.css";
 import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
 import { formatCurrencyForDisplay, formatNumberForDisplay } from "../../utils/formatForDisplay";
 
-const SymbolColumn = () => (
+const SymbolColumn = ({ symbol }: { symbol: string }) => (
   <div>
     <span>.</span>
   </div>
@@ -44,7 +44,7 @@ const NumberColumn = ({ digit }: { digit: string }) => {
 const renderColumn = (value: string, index: number) => {
   const symbols = [".", ",", " "];
   if (symbols.includes(value)) {
-    return <SymbolColumn key={`column-${value}-${index}`} />;
+    return <SymbolColumn key={`column-${value}-${index}`} symbol={value} />;
   }
   return <NumberColumn key={`column-${value}-${index}`} digit={value} />;
 };
