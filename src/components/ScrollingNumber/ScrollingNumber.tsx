@@ -8,7 +8,7 @@ import { formatCurrencyForDisplay, formatNumberForDisplay } from "../../utils/fo
 
 const SymbolColumn = ({ symbol }: { symbol: string }) => (
   <div>
-    <span>.</span>
+    <span>{symbol}</span>
   </div>
 );
 
