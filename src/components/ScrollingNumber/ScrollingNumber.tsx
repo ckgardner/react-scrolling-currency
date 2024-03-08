@@ -110,7 +110,7 @@ const ScrollingNumber = ({
   return (
     <div className={`${className} ${'tickerView'}`}>
       {/* The numbers and symbol are styled using "flex: reverse" */}
-      {!hideCurrencyCode && isCurrency && ` ${currencyCode.toUpperCase()}`}
+      {!hideCurrencyCode && isCurrency && `\u00A0${currencyCode.toUpperCase()}`}
       {numArray.map((num, index) => renderColumn(num, index))}
       {isCurrency && currencySymbol}
       {isNegative && '-'}
