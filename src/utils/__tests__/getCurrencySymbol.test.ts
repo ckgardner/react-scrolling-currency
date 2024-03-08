@@ -1,12 +1,12 @@
-import { getCurrencySymbol } from "../getCurrencySymbol";
+import { getCurrencySymbol } from 'src/utils/getCurrencySymbol';
 
-describe("getCurrencySymbol", () => {
+describe('getCurrencySymbol', () => {
   const testCases = [
-    { input: "$1,234.56", expected: "$" },
-    { input: "€1.234,56", expected: "€" },
+    { expected: '$', input: '$1,234.56' },
+    { expected: '€', input: '€1.234,56' },
   ];
 
-  testCases.forEach(({ input, expected }) => {
+  testCases.forEach(({ expected, input }) => {
     test(`getCurrencySymbol extracts ${expected} from ${input}`, () => {
       expect(getCurrencySymbol(input)).toBe(expected);
     });

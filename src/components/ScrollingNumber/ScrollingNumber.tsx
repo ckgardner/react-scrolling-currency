@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
-import { motion } from "framer-motion";
+import {
+  formatCurrencyForDisplay,
+  formatNumberForDisplay,
+} from 'src/utils/formatForDisplay';
+import { getCurrencySymbol } from 'src/utils/getCurrencySymbol';
 
-import "./styles.css";
-import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
-import { formatCurrencyForDisplay, formatNumberForDisplay } from "../../utils/formatForDisplay";
+import 'src/components/ScrollingNumber/styles.css';
+import { motion } from 'framer-motion';
 
 const SymbolColumn = ({ symbol }: { symbol: string }) => (
   <div>
@@ -28,8 +31,12 @@ const NumberColumn = ({ digit }: { digit: string }) => {
 
   return (
     <div ref={columnContainer} className="tickerColumnContainer">
-      <motion.div animate={{ y: position }} className="tickerColumn" transition={{ ease: "easeOut", type: "tween" }}>
-        {[9, 8, 7, 6, 5, 4, 3, 2, 1, 0].map((num) => (
+      <motion.div
+        animate={{ y: position }}
+        className="tickerColumn"
+        transition={{ ease: 'easeOut', type: 'tween' }}
+      >
+        {[9, 8, 7, 6, 5, 4, 3, 2, 1, 0].map(num => (
           <div key={`column-${num}`} className="tickerDigit">
             <span>{num}</span>
           </div>
@@ -42,7 +49,7 @@ const NumberColumn = ({ digit }: { digit: string }) => {
 };
 
 const renderColumn = (value: string, index: number) => {
-  const symbols = [".", ",", " "];
+  const symbols = ['.', ',', ' '];
   if (symbols.includes(value)) {
     return <SymbolColumn key={`column-${value}-${index}`} symbol={value} />;
   }
@@ -50,18 +57,18 @@ const renderColumn = (value: string, index: number) => {
 };
 
 const ScrollingNumber = ({
-  number,
-  isCurrency = true,
-  locale = "en-US",
-  currencyCode = "USD",
   className,
+  currencyCode = 'USD',
+  isCurrency = true,
+  locale = 'en-US',
+  number,
 }: {
   className?: string;
   /**
-   * @example 1055.35 or 1055
-   * @returns currency with animation
+   * @description currency code to be used for formatting
+   * @default "USD"
    */
-  number: number;
+  currencyCode?: string;
   /**
    * @description determines if the scrolling number is a currency or plain number
    * @default true
@@ -73,10 +80,10 @@ const ScrollingNumber = ({
    */
   locale?: string;
   /**
-   * @description currency code to be used for formatting
-   * @default "USD"
+   * @example 1055.35 or 1055
+   * @returns currency with animation
    */
-  currencyCode?: string;
+  number: number;
 }) => {
   const absoluteValue = Math.abs(number);
 
@@ -84,21 +91,24 @@ const ScrollingNumber = ({
     isCurrency &&
     new Intl.NumberFormat(locale, {
       currency: currencyCode,
-      style: "currency",
+      style: 'currency',
     }).format(absoluteValue);
-  const currencySymbol = formattedCurrency && getCurrencySymbol(formattedCurrency);
-  console.log(absoluteValue);
+  const currencySymbol =
+    formattedCurrency && getCurrencySymbol(formattedCurrency);
 
-  const numArray = isCurrency && formattedCurrency ? formatCurrencyForDisplay(formattedCurrency) : formatNumberForDisplay(absoluteValue);
+  const numArray =
+    isCurrency && formattedCurrency
+      ? formatCurrencyForDisplay(formattedCurrency)
+      : formatNumberForDisplay(absoluteValue);
 
   const isNegative = number < 0;
 
   return (
-    <div className={`${className} ${"tickerView"}`}>
+    <div className={`${className} ${'tickerView'}`}>
       {/* The numbers and symbol are styled using "flex: reverse" */}
       {numArray.map((num, index) => renderColumn(num, index))}
       {isCurrency && currencySymbol}
-      {isNegative && "-"}
+      {isNegative && '-'}
     </div>
   );
 };
