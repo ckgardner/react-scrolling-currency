@@ -56,6 +56,7 @@ const renderColumn = (value: string, index: number) => {
 const ScrollingNumber = ({
   className,
   currencyCode = 'USD',
+  hideCurrencyCode = false,
   isCurrency = true,
   locale = 'en-US',
   number,
@@ -66,6 +67,11 @@ const ScrollingNumber = ({
    * @default "USD"
    */
   currencyCode?: string;
+  /**
+   * @description determines if the currency code should be displayed after the number
+   * @default true
+   */
+  hideCurrencyCode?: boolean;
   /**
    * @description determines if the scrolling number is a currency or plain number
    * @default true
@@ -104,6 +110,7 @@ const ScrollingNumber = ({
   return (
     <div className={`${className} ${'tickerView'}`}>
       {/* The numbers and symbol are styled using "flex: reverse" */}
+      {!hideCurrencyCode && isCurrency && currencyCode}
       {numArray.map((num, index) => renderColumn(num, index))}
       {isCurrency && currencySymbol}
       {isNegative && '-'}
