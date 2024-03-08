@@ -20,7 +20,6 @@ module.exports = {
     'sort-keys',
     'typescript-custom-sort-keys',
     'sort-destructure-keys',
-    'no-relative-import-paths',
   ],
   // eslint-disable-next-line sort-keys/sort-keys-fix
   parser: '@typescript-eslint/parser',
@@ -175,7 +174,6 @@ module.exports = {
     // Typescript takes care of this
     'import/prefer-default-export': 'off',
     'no-console': 'warn', // For debugging ease
-    'no-relative-import-paths/no-relative-import-paths': ['warn'],
     'no-restricted-exports': 'off',
     // https://eslint.org/docs/latest/rules/no-restricted-syntax
     'no-restricted-syntax': [
