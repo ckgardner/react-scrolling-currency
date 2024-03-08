@@ -6,7 +6,7 @@ import {
 } from 'src/utils/formatForDisplay';
 import { getCurrencySymbol } from 'src/utils/getCurrencySymbol';
 
-import '../styles.css';
+import './styles.css';
 import { motion } from 'framer-motion';
 
 const SymbolColumn = ({ symbol }: { symbol: string }) => (
