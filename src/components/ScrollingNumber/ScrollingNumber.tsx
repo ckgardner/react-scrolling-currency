@@ -6,6 +6,40 @@ import { getCurrencySymbol } from 'src/utils/getCurrencySymbol';
 import './styles.css';
 import { motion } from 'framer-motion';
 
+export type ScrollingNumberProps = {
+  className?: string;
+  /**
+   * @description currency code to be used for formatting
+   * @default "USD"
+   */
+  currencyCode?: string;
+  /**
+   * @description determines if the scrolling number is a currency or plain number
+   * @default true
+   */
+  isCurrency?: boolean;
+  /**
+   * @description if a locale is passed, it will format the number based on the locale.
+   * @default "en-US"
+   */
+  locale?: string;
+  /**
+   * @example 1055.35 or 1055
+   * @returns currency with animation
+   */
+  number: number;
+  /**
+   * @description determines if the currency code should be displayed after the number
+   * @default true
+   */
+  showCurrencyCode?: boolean;
+  /**
+   * @description determines if the currency symbol should be displayed
+   * @default false
+   */
+  showCurrencySymbol?: boolean;
+};
+
 const SymbolColumn = ({ symbol }: { symbol: string }) => (
   <div>
     <span>{symbol}</span>
@@ -56,38 +90,12 @@ const renderColumn = (value: string, index: number) => {
 const ScrollingNumber = ({
   className,
   currencyCode = 'USD',
-  hideCurrencyCode = false,
   isCurrency = true,
   locale = 'en-US',
   number,
-}: {
-  className?: string;
-  /**
-   * @description currency code to be used for formatting
-   * @default "USD"
-   */
-  currencyCode?: string;
-  /**
-   * @description determines if the currency code should be displayed after the number
-   * @default true
-   */
-  hideCurrencyCode?: boolean;
-  /**
-   * @description determines if the scrolling number is a currency or plain number
-   * @default true
-   */
-  isCurrency?: boolean;
-  /**
-   * @description if a locale is passed, it will format the number based on the locale.
-   * @default "en-US"
-   */
-  locale?: string;
-  /**
-   * @example 1055.35 or 1055
-   * @returns currency with animation
-   */
-  number: number;
-}) => {
+  showCurrencyCode = false,
+  showCurrencySymbol = true,
+}: ScrollingNumberProps) => {
   const absoluteValue = Math.abs(number);
 
   const formattedCurrency =
@@ -110,9 +118,9 @@ const ScrollingNumber = ({
   return (
     <div className={`${className} ${'tickerView'}`}>
       {/* The numbers and symbol are styled using "flex: reverse" */}
-      {!hideCurrencyCode && isCurrency && `\u00A0${currencyCode.toUpperCase()}`}
+      {showCurrencyCode && isCurrency && `\u00A0${currencyCode.toUpperCase()}`}
       {numArray.map((num, index) => renderColumn(num, index))}
-      {isCurrency && currencySymbol}
+      {showCurrencySymbol && isCurrency && currencySymbol}
       {isNegative && '-'}
     </div>
   );
