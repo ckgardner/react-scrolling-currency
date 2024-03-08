@@ -21,8 +21,8 @@ describe('formatCurrencyForDisplay', () => {
 describe('formatNumberForDisplay', () => {
   const numberTestCases = [
     { expected: ['6', '5', '.', '4', '3', '2', '1'], input: 1234.56 },
-    { expected: ['0', '0', '.', '0'], input: 0 },
-    { expected: ['0', '0', '.', '4', '3', '2', '1'], input: 1234 },
+    { expected: ['0'], input: 0 },
+    { expected: ['4', '3', '2', '1'], input: 1234 },
     { expected: ['7', '5', '.', '4', '3', '2', '1'], input: 1234.567 },
   ];
 

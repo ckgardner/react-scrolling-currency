@@ -9,7 +9,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "src/*": ["src/*"],
+      "src/*": ["./src/*"],
     },
     "jsx": "react",
     "declaration": true,
@@ -27,5 +27,6 @@
     "**/*.tsx",
     ".eslintrc.js",
     "prettier.config.js",
+    "jest.config.js"
   ],
 }
