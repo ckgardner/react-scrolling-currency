@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import {
-  formatCurrencyForDisplay,
-  formatNumberForDisplay,
-} from 'src/utils/formatForDisplay';
+import { formatNumberForDisplay } from 'src/utils/formatForDisplay';
 import { getCurrencySymbol } from 'src/utils/getCurrencySymbol';
 
 import './styles.css';
@@ -96,10 +93,11 @@ const ScrollingNumber = ({
   const currencySymbol =
     formattedCurrency && getCurrencySymbol(formattedCurrency);
 
-  const numArray =
-    isCurrency && formattedCurrency
-      ? formatCurrencyForDisplay(formattedCurrency)
-      : formatNumberForDisplay(absoluteValue);
+  const formattedNumber =
+    !isCurrency && Math.abs(absoluteValue).toLocaleString();
+  const numArray = formatNumberForDisplay(
+    formattedCurrency || formattedNumber || '',
+  );
 
   const isNegative = number < 0;
 
